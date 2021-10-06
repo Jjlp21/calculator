@@ -1,6 +1,7 @@
 *{font-weight:bold;
-font-size:30px;
+font-size:20px;
 background-color:rgba(46, 44, 56, 0.925)}
+
 .calculator{max-width: 400px;
     padding-top:5px;
     border-radius:10px;
@@ -22,14 +23,14 @@ background-color:rgba(46, 44, 56, 0.925)}
 }
 
 .button{height:50px;
-    width:100px;
+    width:25%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     color:white;
     background-color:grey;
- 
+
 }
 
 #remove{background-color:rgba(255, 174, 0, 0.678)}
