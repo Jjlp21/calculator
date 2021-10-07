@@ -1,199 +1,174 @@
-// create object to put in structure of information from given data
+let container = document.createElement('div');
+document.body.appendChild(container);
+container.setAttribute("class", 'container-fluid');
 
-let objData = {
-    page: 1,
-    rows: 10
-}
+let buttons = document.createElement("div");
+container.appendChild(buttons);
+buttons.setAttribute("class","calculator");
 
-//create main div
-let main = document.createElement("div");
-main.innerHTML="PAGINATION TASK"
-main.setAttribute("id","main");
-document.body.append(main);
+let display = document.createElement("input");
+buttons.appendChild(display);
+display.setAttribute("id","display");
+display.setAttribute("type","text");
 
-//create table, thead, tr, and ths
-let table = document.createElement("table");
-let thead = document.createElement("thead");
-let tr = document.createElement("tr");
+let remove = document.createElement("button");
+buttons.appendChild(remove);
+remove.setAttribute("id","remove");
+remove.setAttribute("class","button");
+remove.innerText = "<-";
 
-//give th values in innerHTML
-let th1 = document.createElement("th");
-th1.innerHTML="ID"
-let th2 = document.createElement("th",);
-th2.innerHTML="NAME"
-let th3 = document.createElement("th",);
-th3.innerHTML="EMAIL"
+let clear = document.createElement("button");
+buttons.appendChild(clear);
+clear.setAttribute("id","clear");
+clear.setAttribute("class","button");
+clear.innerText = "c";
 
-//append table to main, thead to table, tr to thead, ths to tr.
-tr.append(th1,th2,th3);
-thead.append(tr);
-table.append(thead);
-main.append(table);
+let divide = document.createElement("button");
+buttons.appendChild(divide);
+divide.setAttribute("id","divide");
+divide.setAttribute("class","button");
+divide.innerText = "/";
 
-//get data from url
-let jsonData = new XMLHttpRequest();
+let multiply = document.createElement("button");
+buttons.appendChild(multiply);
+multiply.setAttribute("id","multiply");
+multiply.setAttribute("class","button");
+multiply.innerText = "*";
 
-try {
-    jsonData.open("GET","https://raw.githubusercontent.com/Rajavasanthan/jsondata/master/pagenation.json");
-    jsonData.send();
+let modulus = document.createElement("button");
+buttons.appendChild(modulus);
+modulus.setAttribute("id","modulus");
+modulus.setAttribute("class","button");
+modulus.innerText = "%";
 
-    //declare an empty array to add details and put in out objData
-    let pageData = [];
+let seven = document.createElement("button");
+buttons.appendChild(seven);
+seven.setAttribute("id","seven");
+seven.setAttribute("class","button");
+seven.innerText = "7";
 
-    jsonData.onload = function(){
-        let data = JSON.parse(this.response);
+let eight = document.createElement("button");
+buttons.appendChild(eight);
+eight.setAttribute("id","eight");
+eight.setAttribute("class","button");
+eight.innerText = "8";
 
-        //iterare over each element of data
-        data.forEach((value)=>{
+let nine = document.createElement("button");
+buttons.appendChild(nine);
+nine.setAttribute("id","nine");
+nine.setAttribute("class","button");
+nine.innerText = "9";
 
-            //declare empty object to fill with data
-            let customerDetails = {};
+let dot = document.createElement("button");
+buttons.appendChild(dot);
+dot.setAttribute("id","dot");
+dot.setAttribute("class","button");
+dot.innerText = ".";
 
-            //take all values to empty object using keys
-            customerDetails.id = value.id;
-            customerDetails.name = value.name;
-            customerDetails.email = value.email;
+let four = document.createElement("button");
+buttons.appendChild(four);
+four.setAttribute("id","four");
+four.setAttribute("class","button");
+four.innerText = "4";
 
-            //push that object empty array
-            pageData.push(customerDetails);
+let five = document.createElement("button");
+buttons.appendChild(five);
+five.setAttribute("class","five");
+five.setAttribute("class","button");
+five.innerText = "5";
 
-        })
+let six = document.createElement("button");
+buttons.appendChild(six);
+six.setAttribute("class","six");
+six.setAttribute("class","button");
+six.innerText = "6";
 
-        //create new prop in our objData with all the data as its value
-        objData.pageData = pageData;
-        
-        //call function to load pagination which takes objData prop and true as parameters 
-        loadPagination(objData.pageData,objData.page,objData.rows,true);
-    };
-} 
-catch (error) {
-    console.error(error);
-}
+let substract = document.createElement("button");
+buttons.appendChild(substract);
+substract.setAttribute("id","substract");
+substract.setAttribute("class","button");
+substract.innerText = "-";
 
-//create function for grouping data for a page
-function loadPagination(pageData,page,rows,isLoadButton){
+let one = document.createElement("button");
+buttons.appendChild(one);
+one.setAttribute("id","one");
+one.setAttribute("class","button");
+one.innerText = "1";
 
-    // 0th index = 1st position
-    let firstRecord = (page - 1) * rows;
+let two = document.createElement("button");
+buttons.appendChild(two);
+two.setAttribute("id","two");
+two.setAttribute("class","button");
+two.innerText = "2";
 
-    // 10th index = 11th position
-    let lastRecord = page * rows;
+let three = document.createElement("button");
+buttons.appendChild(three);
+three.setAttribute("id","three");
+three.setAttribute("class","button");
+three.innerText = "3";
 
-    //slice will return 1st to 10th position and store in customerData
-    let customerData = pageData.slice(firstRecord,lastRecord);
+let addition = document.createElement("button");
+buttons.appendChild(addition);
+addition.setAttribute("id","addition");
+addition.setAttribute("class","button");
+addition.innerText = "+";
 
-    //call function to load table 
-    loadTable(customerData);
+let obracket = document.createElement("button");
+buttons.appendChild(obracket);
+obracket.setAttribute("id","obracket");
+obracket.setAttribute("class","button");
+obracket.innerText = "(";
 
-    //if true then call function to load button passing the datas length by num of rows
-    if(isLoadButton){
-        
-        loadButton(pageData.length/rows);
+let zero = document.createElement("button");
+buttons.appendChild(zero);
+zero.setAttribute("id","zero");
+zero.setAttribute("class","button");
+zero.innerText = "0";
+
+let cbracket = document.createElement("button");
+buttons.appendChild(cbracket);
+cbracket.setAttribute("id","cbracket");
+cbracket.setAttribute("class","button");
+cbracket.innerText = ")";
+
+let equalto = document.createElement("button");
+buttons.appendChild(equalto);
+equalto.setAttribute("id","equalto");
+equalto.setAttribute("class","button");
+equalto.innerText = "=";
+
+
+let allButton = Array.from(document.getElementsByClassName("button"))
+allButton.map(button=>{
+    button.addEventListener('click',(e)=>{
+       switch(e.target.innerText){
+        case "c": display.value = "";
+        break;
+        case "<-": if(display.value){display.value = display.value.slice(0,-1);}
+        break;
+        case "=": if(display.value){
+        try { display.value = eval(display.value);
+            
+        } catch { display.value = "error!"
+            
+        }
     }
-}
+        break;
+        default: display.value += e.target.innerText;
 
-//defining the function to load the table
-function loadTable(data){
+       }
 
-    //create element tbody and append to table
-    let tbody = document.createElement("tbody");
-    tbody.setAttribute("id","tablebody");
-    
-    //for each value of data create rows and insert tds with required values in innerHTML and append to tbody
-    data.forEach((value)=>{
-
-        let tr = document.createElement("tr");
-
-        let tdID = document.createElement("td");
-        tdID.innerHTML = value.id;
-
-        let tdName = document.createElement("td");
-        tdName.innerHTML = value.name;
-
-        let tdEmail = document.createElement("td");
-        tdEmail.innerHTML = value.email;
-
-        tr.append(tdID,tdName,tdEmail);
-        tbody.append(tr);
     })
+})
 
-    table.append(tbody);
-}
-
-//defining the function to load the buttons, datalength/rows will be passed to counts
-function loadButton(counts){
-
-    //create div to put in all buttons
-    let buttondiv = document.createElement("div");
-    buttondiv.setAttribute("id","button");
-
-    //create first button
-    let firstButton = document.createElement("button");
-    firstButton.innerHTML ="First";
-    firstButton.setAttribute("class","btn btn-primary");
-    buttondiv.append(firstButton);
-
-    //addeventlistener to the button and pass the event and a function to be executed
-    firstButton.addEventListener("click",()=>reload(1)); 
- 
-    //create previous button
-    let prevButton = document.createElement("button");
-    prevButton.innerHTML ="Previous"
-    prevButton.setAttribute("class","btn btn-primary");
-    buttondiv.append(prevButton);
-
-     //addeventlistener to the button and pass the event and a function to be executed
-    prevButton.addEventListener("click",()=>{
-        
-        //if altready @pg1 stay there else go a page back
-        if (objData.page === 1)
-            reload(1);
-        else
-            reload(objData.page - 1);
-    });
-
-    //use forloop to create numeric buttons
-    for(let count = 1; count<= counts; count++){
-        let button = document.createElement("button");
-        button.innerHTML=count;
-        button.setAttribute("class","btn btn-primary");
-        button.addEventListener('click',()=>reload(count));
-        buttondiv.append(button);
-    } 
-
-    //create next button
-    let nextButton = document.createElement("button")
-    nextButton.innerHTML="Next"
-    nextButton.setAttribute("class","btn btn-primary");
-    buttondiv.append(nextButton);
-
-    //addeventlistener to the button and pass the event and a function to be executed
-    nextButton.addEventListener("click",()=>{
-
-        //if altready last page stay there else go to next page
-        if (objData.page === Math.ceil(objData.pageData.length/objData.rows))
-            reload(objData.page);
-        else
-            reload(objData.page + 1);
-    });
-
-    //create last button
-    let lastButton = document.createElement("button")
-    lastButton.innerHTML="Last";
-    lastButton.setAttribute("class","btn btn-primary");
-    buttondiv.append(lastButton);
-
-    //addeventlistener to the button and pass the event and a function to be executed
-    lastButton.addEventListener("click",()=>reload(objData.pageData.length/objData.rows)); 
-
-    main.append(buttondiv);  
-}
-
-//function to decide the page to be loaded on clicking particular count
-function reload(count){
-    objData.page = count;
-    let tableBody = document.getElementById("tablebody");
-    tableBody.remove();
-    loadPagination(objData.pageData,objData.page,objData.rows,false);
-}
-
+display.addEventListener('keydown', (e) => {
+    var name = event.key;
+    var code = event.code;
+    if(e.keyCode<47||e.keyCode>57){
+        if(e.keyCode<96||e.keyCode>105){
+         e.preventDefault(); //normal browsers
+          e.returnValue = true;
+          alert("Enter only numbers via keyboard");
+        }
+    }
+  });
